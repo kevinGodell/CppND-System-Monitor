@@ -10,7 +10,7 @@ public:
 
     static std::string getProgressBar(const std::string &percent);
 
-    static void getStream(const std::string &path, std::ifstream &stream);
+    static std::ifstream getStream(const std::string &path);
 };
 
 std::string Util::convertToTime(long int input_seconds) {
@@ -49,11 +49,12 @@ std::string Util::getProgressBar(const std::string &percent) {
 }
 
 // wrapper for creating streams
-void Util::getStream(const std::string &path, std::ifstream &stream) {
+std::ifstream Util::getStream(const std::string &path) {
+    std::ifstream stream;
     stream.open(path, std::ifstream::in);
     if (!stream && !stream.is_open()) {
         stream.close();
         throw std::runtime_error("Non - existing PID");
     }
-    //return stream;
+    return stream;
 }
