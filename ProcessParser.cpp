@@ -1,5 +1,7 @@
 #include <string>
 #include <vector>
+#include "constants.h"
+#include "util.h"
 #include "ProcessParser.h"
 
 std::string
@@ -14,7 +16,21 @@ ProcessParser::getPidList() {
 
 std::string
 ProcessParser::getVmSize(std::string pid) {
-    return std::string();
+    std::string line;
+    std::string name = "VmData";
+    std::string value;
+    float result = 0.0f;
+    std::ifstream stream = Util::getStream(Path::basePath() + pid + Path::statusPath());
+    while (std::getline(stream, line)) {
+        if (line.compare(0, name.size(), name) == 0) {
+            std::istringstream buf(line);
+            std::istream_iterator<string> beg(buf), end;
+            std::vector<string> values(beg, end);
+            result = stof(values[1])/1024.0f;
+            break;
+        }
+    }
+    return std::to_string(result);
 }
 
 std::string
