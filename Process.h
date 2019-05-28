@@ -1,22 +1,20 @@
 #include <string>
 
-using namespace std;
-
 /*
 Basic class for Process representation
 It contains relevant attributes as shown below
 */
 class Process {
 private:
-    string pid;
-    string user;
-    string cmd;
-    string cpu;
-    string mem;
-    string upTime;
+    std::string pid;
+    std::string user;
+    std::string cmd;
+    std::string cpu;
+    std::string mem;
+    std::string upTime;
 
 public:
-    Process(string pid) {
+    Process(std::string pid) {
         this->pid = pid;
         this->user = ProcessParser::getProcUser(pid);
         //TODOs:
@@ -28,30 +26,30 @@ public:
 
     void setPid(int pid);
 
-    string getPid() const;
+    std::string getPid() const;
 
-    string getUser() const;
+    std::string getUser() const;
 
-    string getCmd() const;
+    std::string getCmd() const;
 
     int getCpu() const;
 
     int getMem() const;
 
-    string getUpTime() const;
+    std::string getUpTime() const;
 
-    string getProcess();
+    std::string getProcess();
 };
 
 void Process::setPid(int pid) {
     this->pid = pid;
 }
 
-string Process::getPid() const {
+std::string Process::getPid() const {
     return this->pid;
 }
 
-string Process::getProcess() {
+std::string Process::getProcess() {
     if (!ProcessParser::isPidExisting(this->pid))
         return "";
     this->mem = ProcessParser::getVmSize(this->pid);
