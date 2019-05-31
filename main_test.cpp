@@ -3,10 +3,15 @@
 #include "util.h"
 #include "ProcessParser.h"
 
-std::string pid = "1";
+int main() {
+    std::string pid = "1";
 
-std::string result = ProcessParser::getVmSize(pid);
+    std::string result = ProcessParser::getVmSize(pid);
 
-std::cout << result << std::endl;
+    std::cout << result << std::endl;
+
+    return 0;
+}
+
 
 
