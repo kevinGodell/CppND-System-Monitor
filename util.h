@@ -31,12 +31,12 @@ std::string Util::getProgressBar(const std::string &percent) {
     int _size = 50;
     int boundaries;
     try {
-        boundaries = (stof(percent) / 100) * _size;
+        boundaries = int(stof(percent) * _size / 100);
     } catch (...) {
         boundaries = 0;
     }
 
-    for (int i = 0; i < _size; i++) {
+    for (int i = 0; i < _size; ++i) {
         if (i <= boundaries) {
             result += "|";
         } else {
