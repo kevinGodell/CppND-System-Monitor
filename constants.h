@@ -1,3 +1,6 @@
+#ifndef CPPND_SYSTEM_MONITOR_CONSTANTS_H
+#define CPPND_SYSTEM_MONITOR_CONSTANTS_H
+
 #include <string>
 
 enum CPUStates {
@@ -44,3 +47,5 @@ public:
         return "version";
     }
 };
+
+#endif //CPPND_SYSTEM_MONITOR_CONSTANTS_H

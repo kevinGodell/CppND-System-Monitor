@@ -1,3 +1,6 @@
+#ifndef CPPND_SYSTEM_MONITOR_UTIL_H
+#define CPPND_SYSTEM_MONITOR_UTIL_H
+
 #include <string>
 #include <fstream>
 
@@ -58,3 +61,5 @@ std::ifstream Util::getStream(const std::string &path) {
     }
     return stream;
 }
+
+#endif //CPPND_SYSTEM_MONITOR_UTIL_H
