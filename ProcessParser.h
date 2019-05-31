@@ -21,7 +21,6 @@
 #include <unistd.h>
 #include "constants.h"
 
-
 class ProcessParser {
 private:
     std::ifstream stream;
@@ -30,7 +29,7 @@ public:
 
     static std::vector<std::string> getPidList();
 
-    static std::string getVmSize(std::string pid);
+    static std::string getVmSize(const std::string &pid);
 
     static std::string getCpuPercent(std::string pid);
 
