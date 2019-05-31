@@ -5,4 +5,6 @@
 
 std::string pid = "1";
 
-std::cout << ProcessParser::getVmSize(pid) << std::endl;
+std::string result = ProcessParser::getVmSize(pid);
+
+std::cout << result << std::endl;
