@@ -4,7 +4,12 @@
 #include "ProcessParser.h"
 
 int main() {
+
     std::string pid = "1";
+
+    std::cout << "Enter pid: ";
+
+    std::cin >> pid;
 
     std::string result = ProcessParser::getVmSize(pid);
 
