@@ -1,5 +1,7 @@
 #include <string>
 #include <vector>
+#include <fstream>
+#include <iterator>
 #include "constants.h"
 #include "util.h"
 #include "ProcessParser.h"
