@@ -5,7 +5,7 @@
 #include "ProcessParser.h"
 
 std::string
-ProcessParser::getCmd(string pid) {
+ProcessParser::getCmd(std::string pid) {
     return std::string();
 }
 
@@ -15,7 +15,7 @@ ProcessParser::getPidList() {
 }
 
 std::string
-ProcessParser::getVmSize(std::string pid) {
+ProcessParser::getVmSize(const std::string &pid) {
     std::string line;
     std::string name = "VmData";
     std::string value;
@@ -24,8 +24,8 @@ ProcessParser::getVmSize(std::string pid) {
     while (std::getline(stream, line)) {
         if (line.compare(0, name.size(), name) == 0) {
             std::istringstream buf(line);
-            std::istream_iterator<string> beg(buf), end;
-            std::vector<string> values(beg, end);
+            std::istream_iterator<std::string> beg(buf), end;
+            std::vector<std::string> values(beg, end);
             result = stof(values[1])/1024.0f;
             break;
         }
