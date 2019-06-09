@@ -31,11 +31,11 @@ public:
 
     static std::string getVmSize(const std::string &pid);
 
-    static std::string getCpuPercent(std::string pid);
+    static std::string getCpuPercent(const std::string &pid);
 
     static long int getSysUpTime();
 
-    static std::string getProcUpTime(std::string pid);
+    static std::string getProcUpTime(const std::string &pid);
 
     static std::string getProcUser(std::string pid);
 
