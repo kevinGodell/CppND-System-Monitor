@@ -90,14 +90,15 @@ ProcessParser::getProcUpTime(const std::string &pid) {
     float result;
     std::ifstream stream = Util::getStream((Path::basePath() + pid + "/" +  Path::statPath()));
     std::getline(stream, line);
-    std::cout << line << std::endl;
-    std::cout << _SC_CLK_TCK << std::endl;
+    std::cout << "line " << line << std::endl;
+    std::cout << "click tick " << _SC_CLK_TCK << std::endl;
     std::string str = line;
     std::istringstream buf(str);
     std::istream_iterator<std::string> beg(buf), end;
     std::vector<std::string> values(beg, end); // done!
     // Using sysconf to get clock ticks of the host machine
-    return std::to_string(float(stof(values[13])/sysconf(_SC_CLK_TCK)));}
+    return std::to_string(float(stof(values[13])/sysconf(_SC_CLK_TCK)));
+}
 
 std::string
 ProcessParser::getProcUser(std::string pid) {
