@@ -33,12 +33,12 @@ ProcessParser::getVmSize(const std::string &pid) {
     std::ifstream stream = Util::getStream(Path::basePath() + pid + Path::statusPath());
     while (std::getline(stream, line)) {
         if (line.compare(0, name.size(), name) == 0) {
-            std::cout << "Found " << name << std::endl;
-            std::cout << line << std::endl;
+            //std::cout << "Found " << name << std::endl;
+            //std::cout << "line " << line << std::endl;
             std::istringstream buf(line);
             std::istream_iterator<std::string> beg(buf), end;
             std::vector<std::string> values(beg, end);
-            std::cout << "Value " << stof(values[1]) << std::endl;
+            //std::cout << "Value " << stof(values[1]) << std::endl;
             // conversion kB -> GB
             result = stof(values[1])/float(1024);
             break;
