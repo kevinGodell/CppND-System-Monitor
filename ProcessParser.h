@@ -45,6 +45,8 @@ public:
 
     static std::string getSysKernelVersion();
 
+    static int getNumberOfCores();
+
     static int getTotalThreads();
 
     static int getTotalNumberOfProcesses();

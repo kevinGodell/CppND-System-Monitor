@@ -75,6 +75,11 @@ ProcessParser::getSysKernelVersion() {
 }
 
 int
+ProcessParser::getNumberOfCores() {
+    return 123;
+}
+
+int
 ProcessParser::getTotalThreads() {
     return 123;
 }
