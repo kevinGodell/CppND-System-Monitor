@@ -25,7 +25,7 @@ int main() {
 
     result = ProcessParser::getProcUpTime(pid);
 
-    std::cout << "getSysUpTime " << ProcessParser::getSysUpTime(); << std::endl;
+    std::cout << "getSysUpTime " << ProcessParser::getSysUpTime() << std::endl;
 
     return 0;
 }
