@@ -95,7 +95,7 @@ ProcessParser::getProcUpTime(const std::string &pid) {
     std::istream_iterator<std::string> beg(buf), end;
     std::vector<std::string> values(beg, end); // done!
     // Using sysconf to get clock ticks of the host machine
-    return to_string(float(stof(values[13])/sysconf(_SC_CLK_TCK)));}
+    return std::to_string(float(stof(values[13])/sysconf(_SC_CLK_TCK)));}
 
 std::string
 ProcessParser::getProcUser(std::string pid) {
