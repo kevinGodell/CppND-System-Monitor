@@ -90,6 +90,8 @@ ProcessParser::getProcUpTime(const std::string &pid) {
     float result;
     std::ifstream stream = Util::getStream((Path::basePath() + pid + "/" +  Path::statPath()));
     std::getline(stream, line);
+    std::cout << line << std::endl;
+    std::cout << _SC_CLK_TCK << std::endl;
     std::string str = line;
     std::istringstream buf(str);
     std::istream_iterator<std::string> beg(buf), end;
