@@ -39,7 +39,7 @@ ProcessParser::getVmSize(const std::string &pid) {
             std::istream_iterator<std::string> beg(buf), end;
             std::vector<std::string> values(beg, end);
             //std::cout << "Value " << stof(values[1]) << std::endl;
-            // conversion kB -> GB
+            // conversion kB -> MB
             result = stof(values[1])/float(1024);
             break;
         }
@@ -91,7 +91,8 @@ ProcessParser::getProcUpTime(const std::string &pid) {
     std::ifstream stream = Util::getStream((Path::basePath() + pid + "/" +  Path::statPath()));
     std::getline(stream, line);
     std::cout << "line " << line << std::endl;
-    std::cout << "click tick " << _SC_CLK_TCK << std::endl;
+    std::cout << "clock tick " << _SC_CLK_TCK << std::endl;
+    std::cout << "frequency " << sysconf(_SC_CLK_TCK) << std::endl;
     std::string str = line;
     std::istringstream buf(str);
     std::istream_iterator<std::string> beg(buf), end;
