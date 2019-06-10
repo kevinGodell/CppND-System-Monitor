@@ -23,7 +23,7 @@ int main() {
 
     std::cout << "getPidList size " << pidList.size() << std::endl;
 
-    for (const std:string & pid : pidList) {
+    for (const std::string & pid : pidList) {
 
         //-----------------
 
