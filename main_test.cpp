@@ -23,7 +23,7 @@ int main() {
     std::vector<std::string> cpuData = ProcessParser::getSysCpuPercent();
 
     for (const std::string &data : cpuData) {
-        std::cout << "cpu data all" << data << std::endl;
+        std::cout << "cpu data all : " << data << std::endl;
     }
 
     //-----------------
@@ -32,7 +32,7 @@ int main() {
     cpuData = ProcessParser::getSysCpuPercent("0");
 
     for (const std::string &data : cpuData) {
-        std::cout << "cpu data 0" << data << std::endl;
+        std::cout << "cpu data 0 : " << data << std::endl;
     }
 
     //-----------------
