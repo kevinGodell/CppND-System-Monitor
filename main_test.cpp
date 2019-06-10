@@ -20,11 +20,20 @@ int main() {
 
     //-----------------
 
-    std::cout << "-- getSysCpuPercent " << ProcessParser::getSysCpuPercent() << std::endl;
+    std::vector<std::string> cpuData = ProcessParser::getSysCpuPercent();
+
+    for (const std::string &data : cpuData) {
+        std::cout << "cpu data all" << data << std::endl;
+    }
 
     //-----------------
 
-    std::cout << "-- getSysCpuPercent(0) " << ProcessParser::getSysCpuPercent("0") << std::endl;
+
+    std::vector<std::string> cpuData = ProcessParser::getSysCpuPercent("0");
+
+    for (const std::string &data : cpuData) {
+        std::cout << "cpu data 0" << data << std::endl;
+    }
 
     //-----------------
 
