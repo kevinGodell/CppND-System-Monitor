@@ -41,7 +41,7 @@ int main() {
 
     //-----------------
 
-    std::vector<string> list = ProcessParser::getPidList();
+    std::vector<std::string> list = ProcessParser::getPidList();
 
     std::cout << "getPidList size " << list.size() << std::endl;
 
