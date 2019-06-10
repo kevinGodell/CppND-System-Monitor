@@ -10,18 +10,19 @@ int main() {
     //std::cout << "Enter pid: ";
 
     //std::cin >> pid;
+    std::cout << "//////////////////////////////////////////////////////////////////////" << std::endl;
 
-    std::cout << "getSysUpTime " << ProcessParser::getSysUpTime() << std::endl;
+    std::cout << "-- getSysUpTime " << ProcessParser::getSysUpTime() << std::endl;
 
     //-----------------
 
-    std::cout << "getNumberOfCores " << ProcessParser::getNumberOfCores() << std::endl;
+    std::cout << "-- getNumberOfCores " << ProcessParser::getNumberOfCores() << std::endl;
 
     //-----------------
 
     std::vector<std::string> pidList = ProcessParser::getPidList();
 
-    std::cout << "getPidList size " << pidList.size() << std::endl;
+    std::cout << "-- getPidList size " << pidList.size() << std::endl;
 
     std::cout << "//////////////////////////////////////////////////////////////////////" << std::endl;
 
