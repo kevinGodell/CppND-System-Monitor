@@ -11,21 +11,35 @@ int main() {
 
     std::cin >> pid;
 
+    //-----------------
+
     std::string result = ProcessParser::getVmSize(pid);
 
     std::cout << "getVmSize " << result << std::endl;
+
+    //-----------------
 
     result = ProcessParser::getProcUpTime(pid);
 
     std::cout << "getProcUpTime " << result << std::endl;
 
+    //-----------------
+
     result = ProcessParser::getCpuPercent(pid);
 
     std::cout << "getCpuPercent " << result << std::endl;
 
-    result = ProcessParser::getProcUpTime(pid);
+    //-----------------
 
     std::cout << "getSysUpTime " << ProcessParser::getSysUpTime() << std::endl;
+
+    //-----------------
+
+    result = ProcessParser::getProcUser(pid);
+
+    std::cout << "getProcUser " << result << std::endl;
+
+    //-----------------
 
     return 0;
 }

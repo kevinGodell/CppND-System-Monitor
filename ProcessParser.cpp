@@ -98,8 +98,31 @@ ProcessParser::getProcUpTime(const std::string &pid) {
 }
 
 std::string
-ProcessParser::getProcUser(std::string pid) {
-    return std::string();
+ProcessParser::getProcUser(const std::string &pid) {
+    std::string line;
+    std::string name = "Uid:";
+    std::string result;
+    std::ifstream stream = Util::getStream((Path::basePath() + pid + Path::statusPath()));
+    // Getting UID for user
+    while (std::getline(stream, line)) {
+        if (line.compare(0, name.size(),name) == 0) {
+            std::istringstream buf(line);
+            std::istream_iterator<std::string> beg(buf), end;
+            std::vector<std::string> values(beg, end);
+            result = values[1];
+            break;
+        }
+    }
+    stream = Util::getStream("/etc/passwd");
+    name =("x:" + result);
+    // Searching for name of the user with selected UID
+    while (std::getline(stream, line)) {
+        if (line.find(name) != std::string::npos) {
+            result = line.substr(0, line.find(':'));
+            return result;
+        }
+    }
+    return "";
 }
 
 std::vector<std::string>

@@ -37,7 +37,7 @@ public:
 
     static std::string getProcUpTime(const std::string &pid);
 
-    static std::string getProcUser(std::string pid);
+    static std::string getProcUser(const std::string &pid);
 
     static std::vector<std::string> getSysCpuPercent(std::string coreNumber = "");
 
