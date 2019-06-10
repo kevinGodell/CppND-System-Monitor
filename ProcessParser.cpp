@@ -204,8 +204,8 @@ Because CPU stats can be calculated only if you take measures in two different t
 this function has two parameters: two vectors of relevant values.
 We use a formula to calculate overall activity of processor.
 */
-    float activeTime = getSysActiveCpuTime(values2) - getSysActiveCpuTime(values1);
-    float idleTime = getSysIdleCpuTime(values2) - getSysIdleCpuTime(values1);
+    float activeTime = ProcessParser::getSysActiveCpuTime(values2) - ProcessParser::getSysActiveCpuTime(values1);
+    float idleTime = ProcessParser::getSysIdleCpuTime(values2) - ProcessParser::getSysIdleCpuTime(values1);
     float totalTime = activeTime + idleTime;
     float result = 100.0f * (activeTime / totalTime);
     return std::to_string(result);
@@ -214,5 +214,22 @@ We use a formula to calculate overall activity of processor.
 bool
 ProcessParser::isPidExisting(std::string pid) {
     return true;
+}
+
+float
+ProcessParser::getSysActiveCpuTime(const std::vector<std::string> &values) {
+    return (std::stof(values[S_USER]) +
+            std::stof(values[S_NICE]) +
+            std::stof(values[S_SYSTEM]) +
+            std::stof(values[S_IRQ]) +
+            std::stof(values[S_SOFTIRQ]) +
+            std::stof(values[S_STEAL]) +
+            std::stof(values[S_GUEST]) +
+            std::stof(values[S_GUEST_NICE]));
+}
+
+float
+ProcessParser::getSysIdleCpuTime(const std::vector<std::string> &values) {
+    return (std::stof(values[S_IDLE]) + std::stof(values[S_IOWAIT]));
 }
 
