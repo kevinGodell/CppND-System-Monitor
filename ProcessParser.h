@@ -60,4 +60,21 @@ public:
     static bool isPidExisting(std::string pid);
 };
 
+float get_sys_active_cpu_time(std::vector<std::string> values)
+{
+    return (stof(values[S_USER]) +
+            stof(values[S_NICE]) +
+            stof(values[S_SYSTEM]) +
+            stof(values[S_IRQ]) +
+            stof(values[S_SOFTIRQ]) +
+            stof(values[S_STEAL]) +
+            stof(values[S_GUEST]) +
+            stof(values[S_GUEST_NICE]));
+}
+
+float get_sys_idle_cpu_time(std::vector<std::string>values)
+{
+    return (stof(values[S_IDLE]) + stof(values[S_IOWAIT]));
+}
+
 #endif //CPPND_SYSTEM_MONITOR_PROCESS_PARSER_H

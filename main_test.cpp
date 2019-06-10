@@ -22,14 +22,17 @@ int main() {
 
     std::vector<std::string> cpuData = ProcessParser::getSysCpuPercent();
 
+    std::cout << "get active cpu time for all : " << get_sys_active_cpu_time(cpuData) << std::endl;
+
     for (const std::string &data : cpuData) {
         std::cout << "cpu data all : " << data << std::endl;
     }
 
     //-----------------
 
-
     cpuData = ProcessParser::getSysCpuPercent("0");
+
+    std::cout << "get active cpu time for 0 : " << get_sys_active_cpu_time(cpuData) << std::endl;
 
     for (const std::string &data : cpuData) {
         std::cout << "cpu data 0 : " << data << std::endl;
