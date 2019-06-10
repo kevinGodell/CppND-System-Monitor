@@ -21,7 +21,26 @@ ProcessParser::getCmd(std::string pid) {
 
 std::vector<std::string>
 ProcessParser::getPidList() {
-    return std::vector<std::string>();
+    DIR *dir;
+    // Basically, we are scanning /proc dir for all directories with numbers as their names
+    // If we get valid check we store dir names in vector as list of machine pids
+    std::vector<std::string> container;
+    if (!(dir = opendir("/proc")))
+        throw std::runtime_error(std::strerror(errno));
+
+    while (dirent *dirp = readdir(dir)) {
+        // is this a directory?
+        if (dirp->d_type != DT_DIR)
+            continue;
+        // Is every character of the name a digit?
+        if (std::all_of(dirp->d_name, dirp->d_name + std::strlen(dirp->d_name), [](char c) { return std::isdigit(c); })) {
+            container.emplace_back(dirp->d_name);
+        }
+    }
+    //Validating process of directory closing
+    if (closedir(dir))
+        throw std::runtime_error(std::strerror(errno));
+    return container;
 }
 
 std::string
@@ -105,7 +124,7 @@ ProcessParser::getProcUser(const std::string &pid) {
     std::ifstream stream = Util::getStream((Path::basePath() + pid + Path::statusPath()));
     // Getting UID for user
     while (std::getline(stream, line)) {
-        if (line.compare(0, name.size(),name) == 0) {
+        if (line.compare(0, name.size(), name) == 0) {
             std::istringstream buf(line);
             std::istream_iterator<std::string> beg(buf), end;
             std::vector<std::string> values(beg, end);
@@ -114,7 +133,7 @@ ProcessParser::getProcUser(const std::string &pid) {
         }
     }
     stream = Util::getStream("/etc/passwd");
-    name =("x:" + result);
+    name = ("x:" + result);
     // Searching for name of the user with selected UID
     while (std::getline(stream, line)) {
         if (line.find(name) != std::string::npos) {
