@@ -206,3 +206,19 @@ bool
 ProcessParser::isPidExisting(std::string pid) {
     return true;
 }
+
+float
+get_sys_active_cpu_time(std::vector<std::string> values) {
+    return (std::stof(values[S_USER]) +
+            std::stof(values[S_NICE]) +
+            std::stof(values[S_SYSTEM]) +
+            std::stof(values[S_IRQ]) +
+            std::stof(values[S_SOFTIRQ]) +
+            std::stof(values[S_STEAL]) +
+            std::stof(values[S_GUEST]) +
+            std::stof(values[S_GUEST_NICE]));
+}
+
+float get_sys_idle_cpu_time(std::vector<std::string> values) {
+    return (std::stof(values[S_IDLE]) + std::stof(values[S_IOWAIT]));
+}
