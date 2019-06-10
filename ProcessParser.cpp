@@ -8,34 +8,24 @@
 #include "ProcessParser.h"
 
 std::string
-ProcessParser::getCmd(std::string pid) {
-
-    char *cstr = new char[pid.size() + 1];
-    pid.copy(cstr, pid.size() + 1);
-    cstr[pid.size()] = '\0';
-
-    std::cout << cstr << "\n";
-
-    return std::string();
+ProcessParser::getCmd(const std::string &pid) {
+    std::string line;
+    std::ifstream stream = Util::getStream((Path::basePath() + pid + Path::cmdPath()));
+    std::getline(stream, line);
+    return line;
 }
 
 std::vector<std::string>
 ProcessParser::getPidList() {
     DIR *dir;
-    // Basically, we are scanning /proc dir for all directories with numbers as their names
-    // If we get valid check we store dir names in vector as list of machine pids
     std::vector<std::string> container;
     if (!(dir = opendir(Path::basePath().c_str()))) throw std::runtime_error(std::strerror(errno));
-
     while (dirent *dirp = readdir(dir)) {
-        // is this a directory?
         if (dirp->d_type != DT_DIR) continue;
-        // Is every character of the name a digit?
         if (std::all_of(dirp->d_name, dirp->d_name + std::strlen(dirp->d_name), [](char c) { return std::isdigit(c); })) {
             container.emplace_back(dirp->d_name);
         }
     }
-    //Validating process of directory closing
     if (closedir(dir)) throw std::runtime_error(std::strerror(errno));
     return container;
 }

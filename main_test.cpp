@@ -47,6 +47,12 @@ int main() {
 
     //-----------------
 
+    result = ProcessParser::getCmd(pid);
+
+    std::cout << "getCmd " << result << std::endl;
+
+    //-----------------
+
     return 0;
 }
 

@@ -25,7 +25,7 @@ class ProcessParser {
 private:
     std::ifstream stream;
 public:
-    static std::string getCmd(std::string pid);
+    static std::string getCmd(const std::string &pid);
 
     static std::vector<std::string> getPidList();
 
