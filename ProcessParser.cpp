@@ -86,9 +86,9 @@ ProcessParser::getProcUpTime(const std::string &pid) {
     std::string line;
     std::ifstream stream = Util::getStream((Path::basePath() + pid + "/" + Path::statPath()));
     std::getline(stream, line);
-    std::cout << "line " << line << std::endl;
-    std::cout << "clock tick " << _SC_CLK_TCK << std::endl;
-    std::cout << "frequency " << sysconf(_SC_CLK_TCK) << std::endl;
+    //std::cout << "line " << line << std::endl;
+    //std::cout << "clock tick " << _SC_CLK_TCK << std::endl;
+    //std::cout << "frequency " << sysconf(_SC_CLK_TCK) << std::endl;
     std::string str = line;
     std::istringstream buf(str);
     std::istream_iterator<std::string> beg(buf), end;
