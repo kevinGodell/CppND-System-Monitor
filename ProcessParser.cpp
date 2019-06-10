@@ -148,7 +148,18 @@ ProcessParser::getSysKernelVersion() {
 
 int
 ProcessParser::getNumberOfCores() {
-    return 123;
+    std::string line;
+    std::string name = "cpu cores";
+    std::ifstream stream = Util::getStream((Path::basePath() + Path::cpuInfoPath()));
+    while (std::getline(stream, line)) {
+        if (line.compare(0, name.size(),name) == 0) {
+            std::istringstream buf(line);
+            std::istream_iterator<std::string> beg(buf), end;
+            std::vector<std::string> values(beg, end);
+            return std::stoi(values[3]);
+        }
+    }
+    return 0;
 }
 
 int

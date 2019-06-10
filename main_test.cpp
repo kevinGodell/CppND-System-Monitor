@@ -53,6 +53,10 @@ int main() {
 
     //-----------------
 
+    std::cout << "getNumberOfCores " << ProcessParser::getNumberOfCores() << std::endl;
+
+    //-----------------
+
     return 0;
 }
 

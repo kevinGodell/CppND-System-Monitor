@@ -39,6 +39,10 @@ public:
         return "uptime";
     }
 
+    static std::string cpuInfoPath() {
+        return "cpuinfo";
+    }
+
     static std::string memInfoPath() {
         return "meminfo";
     }
