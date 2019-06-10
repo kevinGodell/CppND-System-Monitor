@@ -39,7 +39,7 @@ public:
 
     static std::string getProcUser(const std::string &pid);
 
-    static std::vector<std::string> getSysCpuPercent(std::string coreNumber = "");
+    static std::vector<std::string> getSysCpuPercent(const std::string &coreNumber = "");
 
     static float getSysRamPercent();
 

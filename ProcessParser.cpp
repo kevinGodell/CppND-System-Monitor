@@ -132,7 +132,22 @@ ProcessParser::getProcUser(const std::string &pid) {
 }
 
 std::vector<std::string>
-ProcessParser::getSysCpuPercent(std::string coreNumber) {
+ProcessParser::getSysCpuPercent(const std::string& coreNumber) {
+    // It is possible to use this method for selection of data for overall cpu or every core.
+    // when nothing is passed "cpu" line is read
+    // when, for example "0" is passed  -> "cpu0" -> data for first core is read
+    std::string line;
+    std::string name = "cpu" + coreNumber;
+    std::ifstream stream = Util::getStream((Path::basePath() + Path::statPath()));
+    while (std::getline(stream, line)) {
+        if (line.compare(0, name.size(),name) == 0) {
+            std::istringstream buf(line);
+            std::istream_iterator<std::string> beg(buf), end;
+            std::vector<std::string> values(beg, end);
+            // set of cpu data active and idle times;
+            return values;
+        }
+    }
     return std::vector<std::string>();
 }
 

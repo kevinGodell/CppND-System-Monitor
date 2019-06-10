@@ -20,6 +20,14 @@ int main() {
 
     //-----------------
 
+    std::cout << "-- getSysCpuPercent " << ProcessParser::getSysCpuPercent() << std::endl;
+
+    //-----------------
+
+    std::cout << "-- getSysCpuPercent(0) " << ProcessParser::getSysCpuPercent("0") << std::endl;
+
+    //-----------------
+
     std::vector<std::string> pidList = ProcessParser::getPidList();
 
     std::cout << "-- getPidList size " << pidList.size() << std::endl;
