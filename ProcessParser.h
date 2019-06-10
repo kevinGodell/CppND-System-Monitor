@@ -55,9 +55,25 @@ public:
 
     static std::string getOSName();
 
-    static std::string PrintCpuStats(std::vector<std::string> values1, std::vector<std::string> values2);
+    static std::string printCpuStats(const std::vector<std::string> &values1, const std::vector<std::string> &values2);
 
     static bool isPidExisting(std::string pid);
 };
+
+float
+getSysActiveCpuTime(std::vector<std::string> values) {
+    return (std::stof(values[S_USER]) +
+            std::stof(values[S_NICE]) +
+            std::stof(values[S_SYSTEM]) +
+            std::stof(values[S_IRQ]) +
+            std::stof(values[S_SOFTIRQ]) +
+            std::stof(values[S_STEAL]) +
+            std::stof(values[S_GUEST]) +
+            std::stof(values[S_GUEST_NICE]));
+}
+
+float getSysIdleCpuTime(std::vector<std::string> values) {
+    return (std::stof(values[S_IDLE]) + std::stof(values[S_IOWAIT]));
+}
 
 #endif //CPPND_SYSTEM_MONITOR_PROCESS_PARSER_H
