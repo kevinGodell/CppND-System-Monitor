@@ -1,6 +1,6 @@
+#include "Util.h"
 #include <string>
 #include <fstream>
-#include "Util.h"
 
 std::string Util::convertToTime(long int input_seconds) {
     long minutes = input_seconds / 60;

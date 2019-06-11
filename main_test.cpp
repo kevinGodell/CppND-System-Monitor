@@ -1,7 +1,7 @@
-#include <iostream>
 #include "constants.h"
 #include "Util.h"
 #include "ProcessParser.h"
+#include <iostream>
 
 int main() {
 
