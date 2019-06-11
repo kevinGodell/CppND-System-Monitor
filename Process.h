@@ -1,3 +1,4 @@
+#include "ProcessParser.h"
 #include <string>
 
 /*
@@ -14,17 +15,16 @@ private:
     std::string upTime;
 
 public:
-    Process(std::string pid) {
+    explicit Process(const std::string &pid) {
         this->pid = pid;
         this->user = ProcessParser::getProcUser(pid);
-        //TODOs:
-        //complete for mem
-        //complete for cmd
-        //complete for upTime
-        //complete for cpu
+        this->mem = ProcessParser::getVmSize(pid);
+        this->cmd = ProcessParser::getCmd(pid);
+        this->upTime = ProcessParser::getProcUpTime(pid);
+        this->cpu = ProcessParser::getCpuPercent(pid);
     }
 
-    void setPid(int pid);
+    void setPid(std::string pid);
 
     std::string getPid() const;
 
@@ -32,29 +32,11 @@ public:
 
     std::string getCmd() const;
 
-    int getCpu() const;
+    std::string getCpu() const;
 
-    int getMem() const;
+    std::string getMem() const;
 
     std::string getUpTime() const;
 
     std::string getProcess();
 };
-
-void Process::setPid(int pid) {
-    this->pid = pid;
-}
-
-std::string Process::getPid() const {
-    return this->pid;
-}
-
-std::string Process::getProcess() {
-    if (!ProcessParser::isPidExisting(this->pid))
-        return "";
-    this->mem = ProcessParser::getVmSize(this->pid);
-    this->upTime = ProcessParser::getProcUpTime(this->pid);
-    this->cpu = ProcessParser::getCpuPercent(this->pid);
-
-    return (this->pid);//todo + "   " + //TODO: finish the string! this->user + "   "+ mem...cpu...upTime...;
-}
