@@ -1,3 +1,6 @@
+#ifndef CPPND_SYSTEM_MONITOR_PROCESS_H
+#define CPPND_SYSTEM_MONITOR_PROCESS_H
+
 #include "ProcessParser.h"
 #include <string>
 
@@ -40,3 +43,5 @@ public:
 
     std::string getProcess();
 };
+
+#endif

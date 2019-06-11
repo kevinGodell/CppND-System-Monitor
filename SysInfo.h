@@ -1,7 +1,10 @@
+#ifndef CPPND_SYSTEM_MONITOR_SYS_INFO_H
+#define CPPND_SYSTEM_MONITOR_SYS_INFO_H
+
+#include "ProcessParser.h"
 #include <string>
 #include <iostream>
 #include <vector>
-#include "ProcessParser.h"
 
 class SysInfo {
 private:
@@ -60,3 +63,4 @@ public:
     std::vector<std::string> getCoresStats() const;
 };
 
+#endif

@@ -1,3 +1,6 @@
+#ifndef CPPND_SYSTEM_MONITOR_PROCESS_CONTAINER_H
+#define CPPND_SYSTEM_MONITOR_PROCESS_CONTAINER_H
+
 #include "Process.h"
 #include <vector>
 
