@@ -2,8 +2,8 @@
 #define CPPND_SYSTEM_MONITOR_SYS_INFO_H
 
 #include "ProcessParser.h"
-#include <string>
 #include <iostream>
+#include <string>
 #include <vector>
 
 class SysInfo {
@@ -34,6 +34,11 @@ public:
         this->setAttributes();
         this->osName = ProcessParser::getOsName();
         this->kernelVer = ProcessParser::getSysKernelVersion();
+        this->upTime = ProcessParser::getSysUpTime();
+        this->memPercent = ProcessParser::getSysRamPercent();
+        this->totalProc = ProcessParser::getTotalNumberOfProcesses();
+        this->runningProc = ProcessParser::getNumberOfRunningProcesses();
+        this->threads = ProcessParser::getTotalThreads();
     }
 
     void setAttributes();
