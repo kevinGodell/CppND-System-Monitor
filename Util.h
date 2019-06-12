@@ -1,8 +1,8 @@
 #ifndef CPPND_SYSTEM_MONITOR_UTIL_H
 #define CPPND_SYSTEM_MONITOR_UTIL_H
 
-#include <string>
 #include <fstream>
+#include <string>
 
 // Classic helper function
 class Util {
