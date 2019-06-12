@@ -239,8 +239,9 @@ ProcessParser::getTotalThreads() {
                 break;
             }
         }
-        return result;
+        //todo return result;
     }
+    return result;
 }
 
 int

@@ -1,20 +1,18 @@
-#include <iostream>
-#include <thread>
-#include <chrono>
-#include <string>
-#include <vector>
-#include <ncurses.h>
-#include <time.h>
-#include <sstream>
-#include <iomanip>
 #include "Util.h"
 #include "SysInfo.h"
 #include "ProcessContainer.h"
+#include <chrono>
+#include <iomanip>
+#include <iostream>
+#include <ncurses.h>
+#include <sstream>
+#include <string>
+#include <thread>
+#include <time.h>
+#include <vector>
 
-using namespace std;
 
-
-char *getCString(std::string str) {
+char *getCString(const std::string &str) {
     char *cstr = new char[str.length() + 1];
     std::strcpy(cstr, str.c_str());
     return cstr;
@@ -22,8 +20,7 @@ char *getCString(std::string str) {
 
 void writeSysInfoToConsole(SysInfo sys, WINDOW *sys_win) {
     sys.setAttributes();
-
-    mvwprintw(sys_win, 2, 2, getCString(("OS: " + sys.getOSName())));
+    mvwprintw(sys_win, 2, 2, getCString(("OS: " + sys.getOsName())));
     mvwprintw(sys_win, 3, 2, getCString(("Kernel version: " + sys.getKernelVersion())));
     mvwprintw(sys_win, 4, 2, getCString("CPU: "));
     wattron(sys_win, COLOR_PAIR(1));
@@ -46,7 +43,7 @@ void writeSysInfoToConsole(SysInfo sys, WINDOW *sys_win) {
     wrefresh(sys_win);
 }
 
-void getProcessListToConsole(std::vector<string> processes, WINDOW *win) {
+void getProcessListToConsole(std::vector<std::string> processes, WINDOW *win) {
 
     wattron(win, COLOR_PAIR(2));
     mvwprintw(win, 1, 2, "PID:");
@@ -61,7 +58,7 @@ void getProcessListToConsole(std::vector<string> processes, WINDOW *win) {
     }
 }
 
-void printMain(SysInfo sys, ProcessContainer procs) {
+void printMain(const SysInfo &sys, ProcessContainer procs) {
     initscr();            /* Start curses mode 		  */
     noecho(); // not printing input values
     cbreak(); // Terminating on classic ctrl + c
@@ -70,12 +67,10 @@ void printMain(SysInfo sys, ProcessContainer procs) {
     getmaxyx(stdscr, yMax, xMax); // getting size of window measured in lines and columns(column one char length)
     WINDOW *sys_win = newwin(17, xMax - 1, 0, 0);
     WINDOW *proc_win = newwin(15, xMax - 1, 18, 0);
-
-
     init_pair(1, COLOR_BLUE, COLOR_BLACK);
     init_pair(2, COLOR_GREEN, COLOR_BLACK);
     int counter = 0;
-    while (1) {
+    while (true) {
         box(sys_win, 0, 0);
         box(proc_win, 0, 0);
         procs.refreshList();
@@ -98,7 +93,7 @@ void printMain(SysInfo sys, ProcessContainer procs) {
 int main(int argc, char *argv[]) {
     //Object which contains list of current processes, Container for Process Class
     ProcessContainer procs;
-// Object which containts relevant methods and attributes regarding system details
+    // Object which contains relevant methods and attributes regarding system details
     SysInfo sys;
     //std::string s = writeToConsole(sys);
     printMain(sys, procs);
