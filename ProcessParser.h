@@ -9,7 +9,6 @@
 #include <dirent.h>
 #include <fstream>
 #include <iostream>
-
 #include <math.h>
 #include <thread>
 #include <iterator>
