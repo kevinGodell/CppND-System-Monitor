@@ -25,6 +25,8 @@ class ProcessParser {
 private:
     std::ifstream stream;
 public:
+    static bool isPidExisting(const std::string &pid);
+
     static std::string getCmd(const std::string &pid);
 
     static std::vector<std::string> getPidList();
@@ -56,8 +58,6 @@ public:
     static std::string getOsName();
 
     static std::string printCpuStats(const std::vector<std::string> &values1, const std::vector<std::string> &values2);
-
-    static bool isPidExisting(std::string pid);
 
     static float getSysActiveCpuTime(const std::vector<std::string> &values);
 

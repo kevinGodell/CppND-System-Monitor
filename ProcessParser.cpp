@@ -7,6 +7,16 @@
 #include <string>
 #include <vector>
 
+bool
+ProcessParser::isPidExisting(const std::string &pid) {
+    DIR *dir = opendir((Path::basePath() + pid).c_str());
+    if (dir) {
+        closedir(dir);
+        return true;
+    }
+    return false;
+}
+
 std::string
 ProcessParser::getCmd(const std::string &pid) {
     std::string line;
@@ -309,11 +319,6 @@ We use a formula to calculate overall activity of processor.
     float totalTime = activeTime + idleTime;
     float result = 100.0f * (activeTime / totalTime);
     return std::to_string(result);
-}
-
-bool
-ProcessParser::isPidExisting(std::string pid) {
-    return true;
 }
 
 float
