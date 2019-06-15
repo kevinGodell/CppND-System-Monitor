@@ -9,7 +9,9 @@
 
 bool
 ProcessParser::isPidExisting(const std::string &pid) {
-    DIR *dir = opendir((Path::basePath() + pid).c_str());
+    std::string pidPath = Path::basePath() + pid;
+    DIR *dir = nullptr;
+    dir = opendir(pidPath.c_str());
     if (dir) {
         closedir(dir);
         return true;
